@@ -1,16 +1,16 @@
-// let array1=new Array(2,3,7,9,3,7,9);
-// console.log(array1);
+let array1=new Array(2,3,7,9,3,7,9);
+console.log(array1);
 
-// let array2=Array.from("JavaScript!");
-// console.log(array2);
+let array2=Array.from("JavaScript!");
+console.log(array2);
 
-// let array3=Array.from(array1);
-// console.log(array3);
+let array3=Array.from(array1);
+console.log(array3);
 
 // // Array.of  - metho init array
 
-// let array4=Array.of("Apple","Ananas","Cherry");
-// console.log(array4);
+let array4=Array.of("Apple","Ananas","Cherry");
+console.log(array4);
 
 // let array5=array4;
 // array5[2]="Plum";
@@ -21,7 +21,7 @@
 // console.log(array4);
 // console.log(array6);
 
-// //indexOf
+// //indexOf is => index ,  is not => -1
 // console.log(array6.indexOf("Ananas"));
 // array6[2]="Ananas";
 // array6[3]="Cherry";
@@ -30,17 +30,17 @@
 // console.log(array6.indexOf("Banane"));
 
 // /// Порахувати скільки разів деяке шукане значення зустрічається в масиві
-// let arr1=[34, 45,-14,24,45,65,34,45];
-// console.log(arr1);
-// let count=0;
-// let index=arr1.indexOf(45);//index=1
-// while(index!=-1){
-//     count++;
-//     console.log(index);
-//     index=arr1.indexOf(45,index+1);
-// }
+let arr1=[34, 45,-14,24,45,65,34,45];
+console.log(arr1);
+let count=0;
+let index=arr1.indexOf(45);//index=1
+while(index!=-1){
+    count++;
+    console.log(index);
+    index=arr1.indexOf(45,index+1);
+}
 
-// console.log("count=",count);
+console.log("count=",count);
 // //lastIndexOf
 
 // count=0;
@@ -71,46 +71,47 @@
 // let resArr=[]
 // findItem2(resArr,[2,3,5,5,7,8,8,5])
 // console.log(resArr);
+//============sorting=======
+// //  arr.sort([compareFunc])
 
-//arr.sort([compareFunc])
+let arr2 = [3, 76, 45, 33, 23, 89, 88, 14,4];
 
-// let arr2 = [3, 76, 45, 89, 23];
+console.log(arr2);
+arr2.sort();
+console.log(arr2);
 
-// console.log(arr2);
-// arr2.sort();
-// console.log(arr2);
-
-// let arr3 = ["Node", "Java", "React", "JavaScript"]
-// console.log(arr3);
-// arr3.sort();
-// console.log(arr3);
+let arr3 = ["Node", "Java", "React", "JavaScript"]
+console.log(arr3);
+arr3.sort();
+console.log(arr3);
 
 // // в порядку зростання
 // // n1>n2 => 1
 // // n1<n2 => -1
 // // n1==n2 => 0
 
-// function compareFunc(n1, n2) {
-//     if (n1 > n2) 
-//         return 1;
-//     else if (n1 < n2) 
-//         return -1;
-//     else 
-//         return 0;
-// }
-// console.log(arr2);
-// arr2.sort(compareFunc);
-// console.log(arr2);
+function compareFunc(n1, n2) {
+    if (n1 > n2) 
+        return 1;
+    else if (n1 < n2) 
+        return -1;
+    else 
+        return 0;
+}
+
+console.log(arr2);
+arr2.sort(compareFunc);
+console.log(arr2);
 
 // //Нехай в нас є рядок. Конвертувати рядок в масив, 
 // //розбивши на елементи масиву, на основі якогось роздільника.
-// let str1="Нехай в нас є рядок. Конвертувати рядок в масив, розбивши на елементи масиву, на основі якогось роздільника.";
-// let arr4=str1.split(" ");
-// console.log(arr4);
-// console.log("count word=",arr4.length);
+ let str1="Нехай в нас є рядок. Конвертувати рядок в масив, розбивши на елементи масиву, на основі якогось роздільника.";
+let arr4=str1.split(" ");
+console.log(arr4);
+console.log("count word=",arr4.length);
 
-// let newstr=arr3.join(";");
-// console.log(newstr);
+let newstr=arr3.join(";");
+console.log(newstr);
 
 // arr1=["Andriy","Bogdan", "Marta"];
 // let newArr1=arr1.slice();
