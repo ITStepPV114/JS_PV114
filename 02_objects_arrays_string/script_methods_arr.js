@@ -99,19 +99,95 @@ function compareFunc(n1, n2) {
         return 0;
 }
 
+function compareNumber(n1, n2) {
+    return n1-n2;
+}
 console.log(arr2);
-arr2.sort(compareFunc);
+// arr2.sort(compareFunc);
+arr2.sort(compareNumber);
 console.log(arr2);
 
 // //Нехай в нас є рядок. Конвертувати рядок в масив, 
 // //розбивши на елементи масиву, на основі якогось роздільника.
  let str1="Нехай в нас є рядок. Конвертувати рядок в масив, розбивши на елементи масиву, на основі якогось роздільника.";
 let arr4=str1.split(" ");
+
 console.log(arr4);
 console.log("count word=",arr4.length);
 
 let newstr=arr3.join(";");
 console.log(newstr);
+let array=[3, -5, 123, 44];
+
+for (let i = 0; i < array.length; i++) {
+    console.log(`Element[${i}]: ${array[i]}`);
+}
+/*
+array.forEach((elem, ind) => {
+    console.log(`Element[${ind}]: ${elem}`);
+})
+
+*/
+console.log("for in");
+// 0, 1, 2, 3, 4...
+for (const key in array) {
+    console.log(key);
+}
+
+console.log("for of");
+// 3, -5, 123, 44...
+for (const value of array) {
+    console.log(value);
+}
+
+// -=-=-=-=-=-=- Array Methods -=-=-=-=-=-=-
+    
+console.log("Original Array: ", array);
+
+array.push(777); // add element to the end
+console.log("Array:", array);
+
+array.pop(); // remove the last element
+console.log("Array:", array);
+
+array.shift(); // remove the first element
+console.log("Array:", array);
+
+array.unshift(555); // add to the beginning
+console.log("Array:", array);
+
+console.log("Index of first 123:", array.indexOf(123));  // if not found = -1
+console.log("Index of last 123:", array.lastIndexOf(123));
+
+console.log("Found:", array.find((elem) => elem < 0));
+
+array.sort();
+console.log("Sorted by default:", array);
+
+// compare result:
+// 0 - items are equals
+// <0 - less
+// >0 - bigger
+array.sort((a, b) => a - b);
+console.log("Sorted with custom func:", array);
+
+array.splice(2, 3); // 3 element from index 2
+console.log("After remove:", array);
+
+const copy = array.slice(1, array.length - 1);
+console.log("Copied array:", copy);
+
+array = [4, 6, 8, 1, 13, 16, -4, 0, 99];
+
+const filtered = array.filter((el) => el % 2 == 0);
+console.log("Filtered array:", filtered);
+
+const colors = ['red', 'brown', 'green', 'gold', 'silver'];
+
+const str = colors.join(" - ");
+console.log("Str after join: ", str);
+
+console.log("Elements after split: ", str.split(' - ').length);
 
 // arr1=["Andriy","Bogdan", "Marta"];
 // let newArr1=arr1.slice();
