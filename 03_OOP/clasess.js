@@ -19,7 +19,7 @@
 // }
 // ==========Classes=========
 class Car {
-    _kilometers; //1 variant private field  by contract
+    _kilometers; //1 variant private (protected) field  by contract
     #volume //2 variant (new) for private field and methods
     static countCar=0; //field of class
     constructor(model, year, color,volume) {
