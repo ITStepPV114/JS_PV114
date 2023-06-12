@@ -136,17 +136,17 @@ class HtmlNews{
     }
     // add getter/setter for all fields
     //...
+
     print(){
         document.write(`<h3> ${this.titleNews}</h3>`);
-     
-    // ■ якщо з дати публікації пройшло менше дня, то виводиться  «сьогодні»;
-    // ■ якщо з дати публікації пройшло менше тижня, то виводиться «N днів тому»;
-    // в інших випадках – повна дата у форматі «день.місяць.рік».
-        // let countdate=(new Date()-new Date(this.datePublished))/(24*60*60*1000);
-        let countdate=(Date.now()-Date.parse(this.datePublished))/(24*60*60*1000);
+        // ■ якщо з дати публікації пройшло менше дня, то виводиться  «сьогодні»;
+        // ■ якщо з дати публікації пройшло менше тижня, то виводиться «N днів тому»;
+        // в інших випадках – повна дата у форматі «день.місяць.рік».
+        // let countDay=(new Date()-new Date(this.datePublished))/(24*60*60*1000);
+        let countDay=(Date.now()-Date.parse(this.datePublished))/(24*60*60*1000);
         let textDate="";
-        if (countdate<1)  textDate="today";
-        else if (countdate<=7) textDate=Math.round(countdate)+" days ago"
+        if (countDay<1)  textDate="today";
+        else if (countDay<=7) textDate=Math.round(countDay)+" days ago"
         else textDate=this.datePublished.toLocaleDateString();
 
         document.write(`<p>${textDate}</p>`);
