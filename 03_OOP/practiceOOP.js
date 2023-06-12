@@ -172,3 +172,47 @@ let news2=new HtmlNews("Title2",textNews,["text","odio"],"2023-06-10");
 let news3=new HtmlNews("Title3",textNews,["text","odio"],"2023-06-12");
 news2.print();
 news3.print();
+
+
+/*
+Реалізуйте клас, що описує стрічку новин.
+Клас має містити:
+■ масив новин;
+■ get-властивість, яка повертає кількість новин;
+■ метод виведення на екран усіх новин;
+■ метод додавання новини;
+■ метод видалення новини;
+■ метод сортування новин за датою (від останніх новин до
+старих);
+■ метод пошуку новин за тегом (повертає масив новин, в
+яких вказано переданий тег у метод).
+Продемонструйте роботу написаних методів
+*/
+
+class LineNews{
+    #arrNews = [];
+    #countNews;
+    constructor(news){
+        this.#arrNews = news;
+        this.#countNews = this.arrNews.length;
+    }
+
+    get arrNews(){
+        return this.#arrNews;
+    }
+
+    get countNews(){
+        return this.#countNews;
+    }
+
+    printNews(){
+        for (const news of this.arrNews) {
+            news.print();
+        }
+   }
+
+}
+
+let arrNews = [news1, news2, news3];
+let lineNewsPolitic = new LineNews(arrNews);
+lineNewsPolitic.printNews();
