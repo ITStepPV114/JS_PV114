@@ -18,11 +18,14 @@
 // }
 // ==========Classes=========
 class Car {
-    constructor(model, year, color) {
+    _kilometers; //1 variant private field  by contract
+    #volume
+    constructor(model, year, color,volume) {
         this.model = model;
         this.year = year;
         this.color = color;
         this._kilometers = 0;
+        this.#volume=volume;
         this.speed = 0;
     }
     //method
