@@ -242,9 +242,7 @@ class LineNews {
                 }
             }
         }
-
         return newArrNews;
-
     }
 
     printNews() {
@@ -261,3 +259,4 @@ let lineNewsPolitic = new LineNews(arrNews);
 // lineNewsPolitic.removeNews();
 lineNewsPolitic.sortDate();
 lineNewsPolitic.printNews();
+console.log(lineNewsPolitic.newsByTag("odio"));

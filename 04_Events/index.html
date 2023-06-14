@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events and JS</title>
+    <style>
+       div{
+        background-color: green ;
+        height: 50px;
+        width: 50px;
+        margin: 20px;
+       } 
+    </style>
+</head>
+<body onclick="console.log(event);">
+    <script src="script.js"></script>
+
+    <div onclick="alert('Clicked DIV!!!!!')">1</div>
+    <div onclick="infoAboutBlock(event)">2</div>
+    <div id="clickDiv">3</div>
+    <div onclick="console.dir(this); this.style.backgroundColor='red';">4</div>
+    <div id="block5" onclick="changeColorAndSize()">5</div>
+    <button id="btn1">Button1</button>
+    <script>
+        // clickDiv.onclick=function(){
+        //     alert("Div clicked and worked events from script block in HTML!!");
+        // }
+
+        function info(){
+        //    alert("Div clicked and worked addEventListener from script block in HTML!!");
+            console.log("CLICK")
+        }
+        clickDiv.addEventListener("click", info);
+        // clickDiv.removeEventListener("click", info);
+
+        clickDiv.addEventListener("mousedown", function(){
+            console.log("ONMOUSEDOWN");
+        });
+
+        clickDiv.addEventListener("mouseup", function(){
+            console.log("ONMOUSEUP");
+        });
+        
+
+        function changeColorAndSize(){
+            block5.style.backgroundColor="yellow";
+            // block5.style["background-color"]="yellow";
+            block5.style.width=100+"px";
+            block5.style.height=200+"px";
+            console.log(block5);
+            console.dir(block5);
+        }
+
+
+        btn1.onmousedown=()=>console.log("Mouse Down");
+        btn1.onmouseup=()=>console.log("Mouse UP");
+        btn1.onmouseenter=()=>console.log("Mouse enter");
+        btn1.onclick=()=>console.log("Mouse CLICKED");
+    </script>
+   
+</body>
+</html>
