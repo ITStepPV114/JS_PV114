@@ -101,59 +101,63 @@ Math.trunc((new Date()-new Date("01/01/2006"))/(365*24*60*60*1000))
 */
 
 
-class HtmlNews{
+class HtmlNews {
     #titleNews;
     #textNews;
     #arrTag;
     #datePublished;
-    constructor(titleNews="",textNews="",arrTag=[], datePublished=new Date()){
+    constructor(titleNews = "", textNews = "", arrTag = [], datePublished = new Date()) {
         // this.#titleNews=titleNews;
-        this.titleNews=titleNews; //if you defineded setter
-        this.#textNews=textNews;
-        this.#arrTag=arrTag;
-        this.#datePublished=new Date(datePublished)=="Invalid Date" ? new Date() : new Date(datePublished);
+        this.titleNews = titleNews; //if you defineded setter
+        this.#textNews = textNews;
+        this.#arrTag = arrTag;
+        this.#datePublished = new Date(datePublished) == "Invalid Date" ? new Date() : new Date(datePublished);
     }
 
-    get titleNews(){
+    get titleNews() {
         return this.#titleNews;
     }
 
     // can use this.titleNews=titleNews;
-    set titleNews(value){
-        this.#titleNews=value;
+    set titleNews(value) {
+        this.#titleNews = value;
     }
-   
-    get textNews(){
+
+    get textNews() {
         return this.#textNews;
     }
 
-    set textNews(value){
-        this.#textNews=value;
+    set textNews(value) {
+        this.#textNews = value;
     }
 
-    get datePublished(){
+    get datePublished() {
         return this.#datePublished;
+    }
+
+    get arrTag() {
+        return this.#arrTag;
     }
     // add getter/setter for all fields
     //...
 
-    print(){
+    print() {
         document.write(`<h3> ${this.titleNews}</h3>`);
         // ■ якщо з дати публікації пройшло менше дня, то виводиться  «сьогодні»;
         // ■ якщо з дати публікації пройшло менше тижня, то виводиться «N днів тому»;
         // в інших випадках – повна дата у форматі «день.місяць.рік».
         // let countDay=(new Date()-new Date(this.datePublished))/(24*60*60*1000);
-        let countDay=(Date.now()-Date.parse(this.datePublished))/(24*60*60*1000);
-        let textDate="";
-        if (countDay<1)  textDate="today";
-        else if (countDay<=7) textDate=Math.round(countDay)+" days ago"
-        else textDate=this.datePublished.toLocaleDateString();
+        let countDay = (Date.now() - Date.parse(this.datePublished)) / (24 * 60 * 60 * 1000);
+        let textDate = "";
+        if (countDay < 1) textDate = "today";
+        else if (countDay <= 7) textDate = Math.round(countDay) + " days ago"
+        else textDate = this.datePublished.toLocaleDateString();
 
         document.write(`<p>${textDate}</p>`);
         document.write(`<p>${this.#textNews}</p>`);
-        let htmlTextTag="";
+        let htmlTextTag = "";
         for (const htag of this.#arrTag) {
-            htmlTextTag+="#"+htag+" ";
+            htmlTextTag += "#" + htag + " ";
         }
 
         document.write(`<p>${htmlTextTag}</p>`);
@@ -162,16 +166,16 @@ class HtmlNews{
 }
 
 
-let textNews="Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae odio provident labore mollitia odit. Accusantium enim quo ad molestias dolor, minima ullam, quidem molestiae ipsum tempore deserunt? Nihil, dignissimos quia!"
-let news1=new HtmlNews("Title1",textNews,["ipsum","dolor"],"05/25/2023");
+let textNews = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae odio provident labore mollitia odit. Accusantium enim quo ad molestias dolor, minima ullam, quidem molestiae ipsum tempore deserunt? Nihil, dignissimos quia!"
+let news1 = new HtmlNews("Title1", textNews, ["ipsum", "dolor"], "05/25/2023");
 console.log(news1.titleNews);
 // news1.titleNews="NewTitle1";
 // console.log(news1.titleNews);
-news1.print();
-let news2=new HtmlNews("Title2",textNews,["text","odio"],"2023-06-10");
-let news3=new HtmlNews("Title3",textNews,["text","odio"],"2023-06-12");
-news2.print();
-news3.print();
+// news1.print();
+let news2 = new HtmlNews("Title2", textNews, ["text", "odio"], "2023-06-10");
+let news3 = new HtmlNews("Title3", textNews, ["text", "odio"], "2023-06-12");
+// news2.print();
+// news3.print();
 
 
 /*
@@ -189,30 +193,71 @@ news3.print();
 Продемонструйте роботу написаних методів
 */
 
-class LineNews{
+class LineNews {
     #arrNews = [];
     #countNews;
-    constructor(news){
+    constructor(news) {
         this.#arrNews = news;
         this.#countNews = this.arrNews.length;
     }
 
-    get arrNews(){
+    get arrNews() {
         return this.#arrNews;
     }
 
-    get countNews(){
+    get countNews() {
         return this.#countNews;
     }
 
-    printNews(){
+    //methods for add and remove  
+    addNews(news = new HtmlNews()) {
+        this.arrNews.push(news);
+    }
+
+    removeNews() {
+        let oldnews = this.arrNews.shift();
+        console.log(oldnews);
+    }
+
+    // a>b => 1  a<b=>-1 a==b   =>  0       => a-b
+    sortDate() {
+        function compareDate(news1, news2) {
+            if (news1.datePublished > news2.datePublished) return -1
+            else if (news1.datePublished < news2.datePublished) return 1
+            return 0;
+        }
+        // console.log(this.arrNews);
+        this.arrNews.sort(compareDate);
+        console.log(this.arrNews);
+
+    }
+    //метод пошуку новин за тегом (повертає масив новин, в яких вказано переданий тег у метод).
+    newsByTag(tag) {
+        let newArrNews = [];
+        for (const news of this.arrNews) {
+            for (const hTag of news.arrTag) {
+                if (hTag == tag) {
+                    newArrNews.push(news);
+                    break;
+                }
+            }
+        }
+
+        return newArrNews;
+
+    }
+
+    printNews() {
         for (const news of this.arrNews) {
             news.print();
         }
-   }
+    }
 
 }
 
 let arrNews = [news1, news2, news3];
 let lineNewsPolitic = new LineNews(arrNews);
+// lineNewsPolitic.printNews();
+// lineNewsPolitic.removeNews();
+lineNewsPolitic.sortDate();
 lineNewsPolitic.printNews();
