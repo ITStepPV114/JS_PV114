@@ -12,17 +12,48 @@
         width: 50px;
         margin: 20px;
        } 
+       #outblock{
+        height: 200px;
+        width: 200px;
+       }
+        #innerblock{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+       }
+       #block1{
+        background-color: aqua;
+       }
+       #block2{
+        background-color: rebeccapurple;
+       }
+
+       #game{
+        width: 400px;
+        height: 400px;
+        background-color: white;
+        border: 2px solid black;
+       }
     </style>
 </head>
 <body onclick="console.log(event);">
-    <script src="script.js"></script>
-
-    <div onclick="alert('Clicked DIV!!!!!')">1</div>
+     <div onclick="alert('Clicked DIV!!!!!')">1</div>
     <div onclick="infoAboutBlock(event)">2</div>
     <div id="clickDiv">3</div>
     <div onclick="console.dir(this); this.style.backgroundColor='red';">4</div>
     <div id="block5" onclick="changeColorAndSize()">5</div>
     <button id="btn1">Button1</button>
+
+    <div id="outblock">
+        <div id="innerblock"></div>
+    </div>
+    <div id="changecolor"></div>
+    <div id="game">
+        <div id="block1"></div>
+        <div id="block2"></div>
+        <div id="block3"></div>
+        <div id="block4"></div>
+    </div>
     <script>
         // clickDiv.onclick=function(){
         //     alert("Div clicked and worked events from script block in HTML!!");
@@ -59,6 +90,6 @@
         btn1.onmouseenter=()=>console.log("Mouse enter");
         btn1.onclick=()=>console.log("Mouse CLICKED");
     </script>
-   
+   <script src="script.js"></script>
 </body>
 </html>
