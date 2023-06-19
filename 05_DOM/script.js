@@ -62,4 +62,40 @@ list.after("AFTER UL!!!");
 
 
 // working with CSS class 
+let getItemByClass=document.querySelector(".active-item");
+console.dir(getItemByClass);
+//style => attr style of element
+console.log(getItemByClass.style.color);
+//get info CSStable for elements
+console.log(window.getComputedStyle(getItemByClass).color);
+
+getItemByClass.style.cssText="color:red; font-size: 2rem";
 //add avent hendler
+let liOfElements=list.children;
+for (let index = 0; index <liOfElements.length; index++) {
+    const li = liOfElements[index];
+    li.onmouseenter=()=>{
+        if(!li.hasAttribute("title"))  li.setAttribute("title",`item number ${index}`);
+    }
+}
+
+let ol=document.querySelector("#list-info>.change-bg>ol");
+/* 
+<ol data-changebg="blue">
+<li>item1</li>
+<li>item2</li>
+<li>item3</li>
+</ol> 
+*/
+console.dir(ol);
+let colorbg=ol.dataset.changebg;
+console.log(colorbg);
+for (const li of ol.children) {
+   li.onclick=()=>{
+    // console.log(window.getComputedStyle(li).backgroundColor);
+    // console.log(window.getComputedStyle(li).backgroundColor==colorbg);
+    if(window.getComputedStyle(li).backgroundColor==colorbg)
+        li.style.backgroundColor="yellow";
+    else  li.style.backgroundColor=colorbg;
+   };
+}
