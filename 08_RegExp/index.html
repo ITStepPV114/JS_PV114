@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="GET" id="regForm" name="regForm" onsubmit="return checkForms()" action="">
+        <br>First name: <input type="text" name="firstName" id="firstName" required>
+        <br>Last name: <input type="text" name="lastName" id="lastName" required>
+        <br>Login: <input type="text" name="login" id="login" required>
+        <br>Email: <input type="email" name="email" id="email" required>
+        <br>Password: <input type="password" name="password" id="password" required>
+        <br>Confirm password: <input type="password" name="cpassword" id="cpassword" required>
+        <br>Phone: <input type="tel" name="tel" id="tel" placeholder="+38(ххх)-ххх-хх-хх" required>
+        <br> <input type="checkbox" name="accept" id="accept" value="Accept true">
+        <input type="submit" value="registration">
+       <input type="reset" value="reset"> 
+    </form>
+    <script>
+        //using object
+        // regexp=new RegExp("template","flags");
+        
+        //using literal
+        // regexp=/template/     //without flags
+        // regexp=/template/gmi     //with flags
+        
+        //flags:
+        //g => all result
+        //m=> wrap find by rows result 
+        //i=> not case-up : "a" or "A"
+        //u => Unicode
+
+        let str = `<br>Login: <input type="text" name="login"\n
+                   id="login" 
+                   required><br>`;
+        let tag='br';
+        let regexp1=new RegExp(`<${tag}>`,"g");
+        console.log(regexp1);
+        // let regexp2=/<br>/g;
+        let regexp2=/<br>/;
+
+        //return true or false
+        console.log(regexp1.test(str)); //true
+
+        let result=str.match(regexp2);
+        console.log(result.index);
+        console.log(result.input);
+        console.log(str.match(regexp2));
+        console.log(str.match(/login/g));
+        let result1=str.match(/type/) || [];
+        // console.log(result1);
+        if (!result1.length) console.log("not find!!!");
+        else console.log(" find!!!")
+
+        console.log(str.replace(/login/gi,"city"));
+
+
+        function checkForms(){
+            event.preventDefault();
+            console.log("good");
+             // let form=document.forms[0];
+            let form=document.forms.regForm;
+            // let form=docum=ent.getElementById("regForm");
+            let regexpPhone=/\+\d\d\(\d\d\d\)-\d\d\d-\d\d-\d\d/;
+            // \w - digit, symbol lat, _
+            // \W - all symbol without \w
+            console.log(regexpPhone);
+            console.dir(form.elements.tel);
+
+            if(regexpPhone.test(form.elements.tel.value))    alert("Good!");
+            else alert("Error number!");
+            return true;
+
+            let regexpName=/[A-Z,a-z]{3,10}/;
+            if(regexpName.test(form.elements.firstName.value))    alert("Good!");
+            else alert("Error name!");
+            return true;
+
+        }
+    </script>
+</body>
+</html>
