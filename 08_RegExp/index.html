@@ -35,40 +35,31 @@
         //u => Unicode
 
 
-        let str = `<br>Login: <input type="text" name="login"\n
-                   id="login" 
-                   required><br>`;
-        let tag = 'br';
-        let regexp1 = new RegExp(`<${tag}>`, "g");
-        console.log(regexp1);
-        // let regexp2=/<br>/g;
-        let regexp2 = /<br>/;
+        // let str = `<br>Login: <input type="text" name="login"\n
+        //            id="login" 
+        //            required><br>`;
+        // let tag = 'br';
+        // let regexp1 = new RegExp(`<${tag}>`, "g");
+        // console.log(regexp1);
+        // // let regexp2=/<br>/g;
+        // let regexp2 = /<br>/;
 
-        //return true or false
-        console.log(regexp1.test(str)); //true
+        // //return true or false
+        // console.log(regexp1.test(str)); //true
 
-        let result = str.match(regexp2);
-        console.log(result.index);
-        console.log(result.input);
-        console.log(str.match(regexp2));
-        console.log(str.match(/login/g));
-        let result1 = str.match(/type/) || [];
-        // console.log(result1);
-        // if (!result1.length) console.log("not find!!!");
-        // else console.log(" find!!!")
+        // let result = str.match(regexp2);
+        // console.log(result.index);
+        // console.log(result.input);
+        // console.log(str.match(regexp2));
+        // console.log(str.match(/login/g));
+        // let result1 = str.match(/type/) || [];
+        // // console.log(result1);
+        // // if (!result1.length) console.log("not find!!!");
+        // // else console.log(" find!!!")
 
-        // console.log(str.replace(/login/gi, "city"));
+        // // console.log(str.replace(/login/gi, "city"));
 
-        // let date = new Date(Date.now() + 86400e3);
-        // date = date.toUTCString();
-        // document.cookie = "user=John; max-age=3600";
-        // document.cookie = "Username = coolDesign";
-        // console.log("document.cookie=", document.cookie);
 
-        //    const d = new Date();
-        //    d.setTime(d.getTime() + (2*24*60*60*1000));
-        //    let expires = "expires="+ d.toUTCString();
-        //   document.cookie =  "trata=jojo;" + expires + ";path=/";
         function checkForms() {
             event.preventDefault();
             console.log("good");
@@ -162,16 +153,6 @@
 
 
         }
-        // let d = new Date(Date.now()+3*60*60*1000+(1000*60*60)); 
-        //     console.log(d);
-        //     console.log(d.toUTCString());
-        //     // d.setMinutes(d.getMinutes() + 8);
-        // // d.setHours(d.getHours() + 3);
-        //     // d.setTime(d.getTime()+(5*60*1000));
-        //     // d.setTime(d.getTime() + (5*60*1000));
-        // let expires = "expires="+ d.toUTCString();
-        // document.cookie =  "trata=jojo;"+expires;
-        // console.log(document.cookie);
 
     </script>
 </body>
