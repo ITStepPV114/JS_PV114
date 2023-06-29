@@ -30,7 +30,7 @@ async function ShowApiResult(url) {
 let usersFake=ShowApiResult(fakeUsers);
 ShowApiResult(gitHubUser);
 
-
+//
 function ShowFakeUser(usersFake=[]){
     // "id": 1,
     // "name": "Leanne Graham",
