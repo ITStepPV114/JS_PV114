@@ -1,84 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <form method="GET" id="regForm" name="regForm" onsubmit="return checkForms()" action="">
-        <br>First name: <input type="text" name="firstName" id="firstName" required>
-        <br>Last name: <input type="text" name="lastName" id="lastName" required>
-        <br>Login: <input type="text" name="login" id="login" required>
-        <br>Email: <input type="email" name="email" id="email" required>
+    <form method="GET" id="regForm" name="regForm" onsubmit="return checkForms()" action="about.html">
+        <br>First name: <input type="text" name="firstName" id="firstName" value="Tetiana" required>
+        <br>Last name: <input type="text" name="lastName" id="lastName" value="Shrol" required>
+        <br>Login: <input type="text" name="login" id="login" value="User" required>
+        <br>Email: <input type="email" name="email" id="email" value="shrolts@gmail.com" required>
         <br>Password: <input type="password" name="password" id="password" required>
         <br>Confirm password: <input type="password" name="cpassword" id="cpassword" required>
-        <br>Phone: <input type="tel" name="tel" id="tel" placeholder="+38(ххх)-ххх-хх-хх" required>
+        <br>Phone: <input type="tel" name="tel" id="tel" placeholder="+38(ххх)-ххх-хх-хх" value="+38(067)-362-82-42" required>
         <br> <input type="checkbox" name="accept" id="accept" value="Accept true">
         <input type="submit" value="registration">
-       <input type="reset" value="reset"> 
+        <input type="reset" value="reset">
     </form>
     <script>
         //using object
         // regexp=new RegExp("template","flags");
-        
+
         //using literal
         // regexp=/template/     //without flags
         // regexp=/template/gmi     //with flags
-        
+
         //flags:
         //g => all result
         //m=> wrap find by rows result 
         //i=> not case-up : "a" or "A"
         //u => Unicode
 
+
         let str = `<br>Login: <input type="text" name="login"\n
                    id="login" 
                    required><br>`;
-        let tag='br';
-        let regexp1=new RegExp(`<${tag}>`,"g");
+        let tag = 'br';
+        let regexp1 = new RegExp(`<${tag}>`, "g");
         console.log(regexp1);
         // let regexp2=/<br>/g;
-        let regexp2=/<br>/;
+        let regexp2 = /<br>/;
 
         //return true or false
         console.log(regexp1.test(str)); //true
 
-        let result=str.match(regexp2);
+        let result = str.match(regexp2);
         console.log(result.index);
         console.log(result.input);
         console.log(str.match(regexp2));
         console.log(str.match(/login/g));
-        let result1=str.match(/type/) || [];
+        let result1 = str.match(/type/) || [];
         // console.log(result1);
-        if (!result1.length) console.log("not find!!!");
-        else console.log(" find!!!")
+        // if (!result1.length) console.log("not find!!!");
+        // else console.log(" find!!!")
 
-        console.log(str.replace(/login/gi,"city"));
+        // console.log(str.replace(/login/gi, "city"));
 
+        // let date = new Date(Date.now() + 86400e3);
+        // date = date.toUTCString();
+        // document.cookie = "user=John; max-age=3600";
+        // document.cookie = "Username = coolDesign";
+        // console.log("document.cookie=", document.cookie);
 
-        function checkForms(){
+        //    const d = new Date();
+        //    d.setTime(d.getTime() + (2*24*60*60*1000));
+        //    let expires = "expires="+ d.toUTCString();
+        //   document.cookie =  "trata=jojo;" + expires + ";path=/";
+        function checkForms() {
             event.preventDefault();
             console.log("good");
-             // let form=document.forms[0];
-            let form=document.forms.regForm;
+            // let form=document.forms[0];
+            let form = document.forms.regForm;
             // let form=docum=ent.getElementById("regForm");
-            let regexpPhone=/\+\d\d\(\d\d\d\)-\d\d\d-\d\d-\d\d/;
+            // let regexpPhone=/\+\d\d\(\d\d\d\)\-?\d\d\d\-?\d\d\-?\d\d/;
+            let regexpPhone = /\+\d{2}\(\d{3}\)\-?\d{3}-?\d{2}\-?\d{2}/;
             // \w - digit, symbol lat, _
             // \W - all symbol without \w
             console.log(regexpPhone);
             console.dir(form.elements.tel);
 
-            if(regexpPhone.test(form.elements.tel.value))    alert("Good!");
-            else alert("Error number!");
+            if (!regexpPhone.test(form.elements.tel.value)) {
+                alert("Error number!");
+                // return false;
+            }
+            // return true;
+
+            // /^[A-Z]{1}[a-z0-9_]{3,16}$/.test("User123")  ;  //true
+            // /^[A-Z]{1}[a-z0-9_]{3,16}$/.test("USer123")  ;  //false
+            // let regexpName=/[A-Za-z]{3,10}/;
+            // /^[a-z0-9_-]{3,16}$/.test("9User_") ; true
+            let firstNameValue = form.elements.firstName.value;
+            let regexpFirstName = /^[A-Za-z0-9_-]{3,16}$/;
+            if (!regexpFirstName.test(form.elements.firstName.value)) {
+                alert("Error firstname!");
+                // return false
+            }
+
+
+            let lastNameValue = form.elements.lastName.value;
+            let regexpLastName = /^[A-Za-z0-9_-]{3,16}$/;
+            if (!regexpLastName.test(lastNameValue)) {
+                alert("Error LASTname!");
+                // return false;
+            }
+            // return true;
+
+            let regexpPassword = /^[a-z0-9_-]{6,18}$/;
+            // /[A-Z]+[a-z]+[0-9]+[_-\s]+/.test("ARkk89__"); //зберігається послідовність
+            // /[A-Z]+[a-z]+[0-9]+_?$/.test("ARRERkllk89__9"); //FALSE
+            // /([A-Z]+)([a-z]+)([0-9]+)([_-\s]+){6,18}/.test("ARkk89_");
+            if (!regexpPassword.test(form.elements.password.value)) {
+                alert("Error password!");
+                // return false;
+            }
+
+            let regexpEmail = /^[\w\.\-]{3,}@\w+\.\w+$/;
+            // let regexpEmail=/^[\w\.\-]{3,}@\w{2,}\.\w{3,6}$/;
+            // shrol_t@gmail.com
+            // /^[\w\.\-]{3,12}@\w+\.\w+$/
+            if (!regexpEmail.test(form.elements.email.value)) {
+                alert("Error password!");
+                // return false;
+            }
+
+            // Cookie
+            //1) cookie
+            //2) expires = > toUTCString() => 26 Jun 2023 19:53:00 GMT 
+            //3) path www.site.com/home => path => /home    !www.site.com/blog
+            //4) domain =  news.site.com
+            //5) secure SSl => https => true or false
+
+            const currentDate = new Date(Date.now());
+            console.log("date=", currentDate); 
+            expire = currentDate;
+            expire.setMinutes(expire.getMinutes()+10);
+            console.log("expire=",expire);
+            document.cookie = `firstName=${firstName.value}; max-age=6000;`; //period life cookie in second
+            document.cookie = "email=" + email.value + ";expires=" + expire.toUTCString() + "; path='/';";
+            document.cookie = "lastName=" + lastName.value + ";expires=" + expire.toUTCString() + ";";
+            console.log(document.cookie);
+            // vqariant 2
+            //  const now1 = new Date(); // date UTC -3
+            // //  cosole.log("now=",now);
+            // console.log(new Date());
+            // let offset = new Date().getTimezoneOffset(); // europe/kiev   => -180
+            // console.log(offset);
+            // expire = now1;
+            // expire.setMinutes(expire.getMinutes() + 8); // 8 minutes lives cookie
+            // expire.setHours(expire.getHours() + Math.trunc((Math.abs(offset) / 60)));
+            // console.log("expires=", expire.toUTCString());
+            // document.cookie = `firstName1=${firstName.value}; expires=${expire.toUTCString()};`;
+            // document.cookie = `lastName1=${lastName.value}; expires=${expire.toUTCString()};`;
+            // console.log(document.cookie);
+
+
+
             return true;
 
-            let regexpName=/[A-Z,a-z]{3,10}/;
-            if(regexpName.test(form.elements.firstName.value))    alert("Good!");
-            else alert("Error name!");
-            return true;
 
         }
+        // let d = new Date(Date.now()+3*60*60*1000+(1000*60*60)); 
+        //     console.log(d);
+        //     console.log(d.toUTCString());
+        //     // d.setMinutes(d.getMinutes() + 8);
+        // // d.setHours(d.getHours() + 3);
+        //     // d.setTime(d.getTime()+(5*60*1000));
+        //     // d.setTime(d.getTime() + (5*60*1000));
+        // let expires = "expires="+ d.toUTCString();
+        // document.cookie =  "trata=jojo;"+expires;
+        // console.log(document.cookie);
+
     </script>
 </body>
+
 </html>
