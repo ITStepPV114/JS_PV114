@@ -1,14 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
+    <h1>WELCOME</h1>
+    <form name="infoUser" action="">
+        <label for="firstName">FIRSTNAME</label>
+        <input type="text" id="firstName" name="firstNameForm">
+        <br>
+        <label for="lastName"> LASTNAME </label>
+        <input type="text" id="lastName" name="lastNameForm">
+    </form>
+
     <script>
-console.log(document.cookie);
+        let body_tag = document.querySelector("body");
+        // console.log(document.cookie);
+        let cookies = document.cookie.split(";");
+        let h3_tag = document.createElement("h3");
+        h3_tag.innerHTML = "<em>Cookies:</em>";
+        h3_tag.style.color = "green";
+        h3_tag.style.textAlign = "center";
+        console.dir(h3_tag);
+        body_tag.append(h3_tag);
+
+        let p_tag = document.createElement("p");
+        for (let i = 0; i < cookies.length; i++) {
+            //    console.log(cookies[i]); // key=value
+            let key_value = cookies[i].split("=");
+            let key = key_value[0];
+            let value = key_value[1];
+            p_tag.innerHTML += key + "=>" + value + "<br>";
+        }
+        console.log(p_tag);
+        console.dir(p_tag);
+        body_tag.append(p_tag);
+        // get localStorage
+
+        //get value localStorage
+        let infoUserJson = localStorage.getItem("user"); //json => string 
+        let infoUserObj = JSON.parse(infoUserJson); // => object
+        console.log(infoUserObj);
+        //get form infoUser
+        let infoUserForm = document.forms.infoUser;
+        console.dir(infoUserForm);
+        if(infoUserObj!=null){
+            infoUserForm.elements.firstNameForm.value=infoUserObj["firstName"];
+            infoUserForm.elements.lastNameForm.value=infoUserObj.lastName;
+        }
+
+
+
 
     </script>
 </body>
+
 </html>

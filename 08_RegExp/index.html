@@ -15,7 +15,8 @@
         <br>Email: <input type="email" name="email" id="email" value="shrolts@gmail.com" required>
         <br>Password: <input type="password" name="password" id="password" required>
         <br>Confirm password: <input type="password" name="cpassword" id="cpassword" required>
-        <br>Phone: <input type="tel" name="tel" id="tel" placeholder="+38(ххх)-ххх-хх-хх" value="+38(067)-362-82-42" required>
+        <br>Phone: <input type="tel" name="tel" id="tel" placeholder="+38(ххх)-ххх-хх-хх" value="+38(067)-362-82-42"
+            required>
         <br> <input type="checkbox" name="accept" id="accept" value="Accept true">
         <input type="submit" value="registration">
         <input type="reset" value="reset">
@@ -61,7 +62,7 @@
 
 
         function checkForms() {
-            event.preventDefault();
+            // event.preventDefault();
             console.log("good");
             // let form=document.forms[0];
             let form = document.forms.regForm;
@@ -125,12 +126,12 @@
             //5) secure SSl => https => true or false
 
             const currentDate = new Date(Date.now());
-            console.log("date=", currentDate); 
+            console.log("date=", currentDate);
             expire = currentDate;
-            expire.setMinutes(expire.getMinutes()+10);
-            console.log("expire=",expire);
+            expire.setMinutes(expire.getMinutes() + 10);
+            console.log("expire=", expire);
             document.cookie = `firstName=${firstName.value}; max-age=6000;`; //period life cookie in second
-            document.cookie = "email=" + email.value + ";expires=" + expire.toUTCString() + "; path='/';";
+            document.cookie = "email=" + email.value + ";expires=" + expire.toUTCString() + "; path='/'";
             document.cookie = "lastName=" + lastName.value + ";expires=" + expire.toUTCString() + ";";
             console.log(document.cookie);
             // vqariant 2
@@ -147,11 +148,34 @@
             // document.cookie = `lastName1=${lastName.value}; expires=${expire.toUTCString()};`;
             // console.log(document.cookie);
 
+            // localStorage (save after full close page and new open browser)
+            // and sessionStorage (save after refresh page) => key: value  
+            //to 2 Mg
 
+            // by id get vallu email from input field
+            localStorage.setItem("email", email.value);  //value => always string 
+            localStorage.setItem("firstNameLS", firstName.value);
+            console.log(localStorage.getItem("email"));
+            // 23 => parseInt(23)
+            //all remove
+            // localStorage.clear();
 
+            sessionStorage.setItem("lastNameSS", lastName.value);
+            console.log(sessionStorage.getItem("lastNameSS"));
+            // sessionStorage.removeItem("lastNameSS");
+            let user = {
+                lastName: lastNameValue, // using variable
+                firstName: firstNameValue, //using variable
+                email: email.value    // using id by input
+            }
+            console.log("object user=",user);
+            let userJSON = JSON.stringify(user); // => string 
+            /*
+                user={"lastName":"Shrol","firstName":"Tetiana","email":"shrolts@gmail.com"}
+            */
+            console.log("JSON user=",userJSON);
+            localStorage.setItem("user",userJSON)
             return true;
-
-
         }
 
     </script>
