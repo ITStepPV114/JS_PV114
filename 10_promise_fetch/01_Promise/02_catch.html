@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Catch</title>
+</head>
+
+<body>
+    <script>
+        let promise = new Promise((resolve, reject) => {
+
+            setTimeout(() => {
+                resolve('Hello, Promise!')
+            }, 2000);
+            setTimeout(() => {
+                reject(new Error('Error called!'))
+            }, 1000)
+        });
+        // Обробник .catch(onRejected) отримує помилку і має обробити її.
+
+        // Є два варіанти розвитку подій:
+
+        // Якщо помилка не критична, то onRejected повертає значення через return, і управління переходить у найближчий .then(onFulfilled).
+        // Якщо продовжити виконання з такою помилкою не можна, він робить throw, і тоді помилка перетворюється на наступний .catch(onRejected).
+        promise
+            .then(result => console.log(result))
+            .then(result => console.log(result))
+            .catch(error => console.error(error));
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

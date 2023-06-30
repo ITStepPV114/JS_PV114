@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic Promise</title>
+</head>
+
+<body>
+    <script>
+        // Promise - Надають зручний спосіб організації асинхронного коду.
+        // Promise - це спеціальний об'єкт, що містить свій стан. 
+        // Спочатку pending («очікування»), потім – одне з:
+        // fulfilled («виконано успішно») або rejected («виконано з помилкою»).
+        // На promise можна навішувати коллбеки двох типів:
+        // onFulfilled – спрацьовують, коли promise   «виконаний успішно».
+        // onRejected – спрацьовують, коли promise   «виконаний з помилкою».
+        //
+
+        // Код, якому треба зробити щось асинхронно, створює об'єкт promise та повертає його.
+        // Зовнішній код, отримавши promise, навішує на нього обробники.
+        // Після завершення процесу асинхронний код переводить promise в стан fulfilled (з результатом) або rejected (з помилкою).
+        // При цьому автоматично викликаються відповідні обробники у зовнішньому коді.
+        // Поки проміс працює - решта коду програми - не зупиняється
+        // callback функція буде викликана автоматично
+        let promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('Hello, Promise!')
+            }, 4000);
+            setTimeout(() => {
+                reject(new Error('Error called!'))
+            }, 3000)
+        });
+
+        // setTimeout(()=>{
+        //     console.log("HELLO!!!!!!");
+        // },4000);
+
+        // let counterPrint=setInterval(()=>{
+        //     console.log("HELLO from setInterval!!!!!!");
+        // },2000);
+
+        // setTimeout(()=>{
+        //     clearInterval(counterPrint);
+        // },11000);
+       
+
+        // let promise1 = new Promise((resolve, reject) => {
+        //     resolve('Hello, Promise!');
+        //     reject(new Error('Error called!'));
+        // });
+        //promise.then(onFulfilled, onRejected); - promise.then навішує обробники на успішний результат чи помилку
+        // onFulfilled – функція, яка буде викликана  при resolve.
+        // onRejected - функція, яка буде викликана з помилкою при reject
+        promise.then(
+            result => {
+                console.log(result);
+                return "Hello from first then"
+            },
+            // При виникненні помилки – вона вирушає до найближчого обробника onRejected.//
+            error => console.log(error))
+            .then(resultText => console.log(resultText));
+    </script>
+</body>
+
+</html>
