@@ -27,7 +27,7 @@ async function ShowApiResult(url) {
 
 }
 
-let usersFake=ShowApiResult(fakeUsers);
+ShowApiResult(urlfakeUsers);
 ShowApiResult(gitHubUser);
 
 //
