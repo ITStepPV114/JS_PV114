@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fetch</title>
+</head>
+<body>
+    <script>
+        function userInfo(url) {
+            return fetch(url);
+        }           
+      // при послідовних викликах .then ... then ... then, в кожний наступний then 
+      //переходить результат від попереднього.
+         // Якщо черговий then повернув проміс, то далі по ланцюжку буде передано не сам цей проміс,
+         // а його результат.
+        userInfo("https://jsonplaceholder.typicode.com/users/5")
+            .then(
+            response => response.json())
+            .then(user => {
+                let p =  document.createElement('p');
+                p.innerText = user.name; 
+                document.body.appendChild(p);
+                let i = document.createElement('i');
+                i.innerHTML = `Contact me: ${user.email}`;
+                document.body.appendChild(i);
+                return userInfo(`https://jsonplaceholder.typicode.com/photos/${user.id}`);
+            })
+            .then(response => response.json())
+            .then(info => {
+                    let img = new Image();
+                    img.alt = info.title;
+                    img.src = info.url;
+                    setTimeout(()=>{
+                    document.body.appendChild(img);},1200);
+                    return userInfo(`https://jsonplaceholder.typicode.com/posts/1`);
+            })
+            .then(response => response.json())
+            .then(post=>console.log(post))
+            .catch(err => console.error(err));        
+
+
+    </script>
+</body>
+</html>
