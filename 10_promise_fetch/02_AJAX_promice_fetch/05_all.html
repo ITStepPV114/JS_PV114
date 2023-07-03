@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise all</title>
+</head>
+
+<body>
+    <script>
+
+
+        // Виклик Promise.all(iterable) отримує масив (або інший об'єкт, що ітерується) промісів і повертає проміс,
+        // який чекає, поки всі передані проміси завершаться,
+        // і перетворюється на стан «виконано» з масивом їх результатів.
+        function userInfo(url) {
+            return fetch(url);
+        }
+        //Promise.all чекає на виконання всіх обіцянок (або першого методу reject()).
+        // Якщо один із промісів завершився з помилкою, то результатом Promise.all буде ця помилка.
+        // У цьому інші промиси ігноруються.
+        Promise.all([
+            userInfo("https://jsonplaceholder.typicode.com/users/4"),
+            userInfo("https://jsonplaceholder.typicode.com/posts/4"),
+            userInfo("https://jsonplaceholder.typicode.com/photos/4"),
+        ])
+            .then(responses => Promise.all(responses.map(res => res.json())))
+            .then(x => console.log(x))
+            .catch(error => console.error());
+
+
+
+    </script>
+</body>
+
+</html>

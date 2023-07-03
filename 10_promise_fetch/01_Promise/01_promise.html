@@ -51,10 +51,15 @@
         //     resolve('Hello, Promise!');
         //     reject(new Error('Error called!'));
         // });
-        //promise.then(onFulfilled, onRejected); - promise.then навішує обробники на успішний результат чи помилку
+        //promise.then(onFulfilled, onRejected); - promise.then навішує обробники 
+        // на успішний результат чи помилку
         // onFulfilled – функція, яка буде викликана  при resolve.
         // onRejected - функція, яка буде викликана з помилкою при reject
         promise.then(
+            // function(result){
+            //     console.log(result);
+            //     return "Hello from first then"
+            // }
             result => {
                 console.log(result);
                 return "Hello from first then"

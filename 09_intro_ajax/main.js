@@ -71,11 +71,7 @@ async function ShowApiResultUSER(url) {
 //     }
 // }
 
-fetch(urlfakeUsers, data)
-    .then(result => {
-        return result.json();
-    })
-    .then(data => addToTableFakeUser(data));
+
 
 
 //function

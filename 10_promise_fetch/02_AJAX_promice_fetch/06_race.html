@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise race</title>
+</head>
+
+<body>
+    <script>
+        // Виклик Promise.race, як і Promise.all, отримує об'єкт, що ітерується, 
+        //з промісами, які потрібно виконати, і повертає новий проміс.
+        //Але, на відміну від Promise.all, результатом буде лише перший
+        // успішно виконаний проміс зі списку. Інші ігноруються.
+        function userInfo(url) {
+            return fetch(url);
+        }
+        Promise.race([
+            userInfo("https://jsonplaceholder.typicode.com/posts/4"),
+            userInfo("https://jsonplaceholder.typicode.com/users/4"),
+            userInfo("https://jsonplaceholder.typicode.com/photos/4"),
+        ])
+            .then(responses => responses.json())
+            .then(i => console.log(i))
+            .catch(error => console.error('Error:', error));
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fetch</title>
+</head>
+<body>
+       <script>
+        // Метод fetch - це XMLHttpRequest нового покоління. Він надає
+         // Покращений інтерфейс для здійснення запитів до сервера:
+         // як щодо можливостей і контролю за тим, що відбувається,
+         // і по синтаксису, оскільки побудований на промісах.
+        //Приклад запиту для отримання даних про погоду appid має бути ваш (надається при реєстрації
+        let url = 'https://api.openweathermap.org/data/2.5/weather?q=Рівне&lang=uk&appid=40df048e842adba4c0190cfda31a7571';
+        let options = 
+        {
+            method: 'GET',
+            //headers,
+             //body, // Тіло запиту
+             //mode, // у якому режимі крос-доменності передбачається робити запит.
+             //credentials, // чи надсилати куки і заголовки авторизації разом із запитом.
+             //cache, //як кешувати запит.
+        }
+        // При виклику fetch повертає проміс, який, коли отримано відповідь, виконує колбеки
+         // з об'єктом Response або помилкою, якщо запит не вдався.
+        let req = fetch(url, options);
+         // response крім доступу до заголовків headers,
+         // статусу status та деяким іншим полям відповіді, дає можливість
+         // прочитати його тіло, у бажаному форматі:
+         // response.arrayBuffer()
+         // response.blob()
+         // response.formData()
+         // response.json()
+         // response.text()
+        req.then(response => response.json()) // Повертає Promise
+
+           .then(data => console.log(data))
+           .catch(err => {console.error(err);  });
+    
+    </script>
+</body>
+</html>
