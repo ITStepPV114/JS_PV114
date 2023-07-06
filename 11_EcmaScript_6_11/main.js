@@ -16,6 +16,7 @@ console.log(varNumber);     // works: 10
 console.log(letNumber);     // works: 10
 
 function increment(num) {
+    let letNum1 = 12;
     console.log(step);  // works
 
     var step = 2;       // function scope
@@ -35,7 +36,7 @@ function increment(num) {
 
     return num;
 }
-
+// console.log(letNum1); //error
 increment(30);
 
 // -=-=-=-=-=-=-=-=- Destructuring -=-=-=-=-=-=-=-=-
@@ -122,7 +123,6 @@ let block = "<>";
 console.log(block.repeat(10));
 
 // -=-=-=-=-=-=-=-=- modules -=-=-=-=-=-=-=-=-
-//import { initArray } from "./module";
-
-//initArray(array);
-//console.log(`Array: ${array}`);
+import { initArray } from "./module.js";
+initArray(array);
+console.log(`Array: ${array}`);

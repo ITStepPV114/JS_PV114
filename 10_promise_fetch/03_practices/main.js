@@ -104,6 +104,11 @@ function infoSelectedUsers(){
 
 function showUserInfo(user) {
     const infoUser = document.querySelector(".infoUser");
+    let tableIs=document.querySelector('.info-table');
+    if (tableIs!==null){
+        tableIs.remove();
+        infoUser.querySelector('button').remove();
+    }
     const table = document.createElement("table");
     table.innerHTML =
         `
@@ -117,7 +122,7 @@ function showUserInfo(user) {
     </tr>
     <tr>
         <td>Address: </td>
-        <td>${user.address}</td>
+        <td>${user.address.city}</td>
     </tr>
     <tr>
         <td>Email: </td>
@@ -139,8 +144,7 @@ function showUserInfo(user) {
     btnShowPosts.setAttribute("data-userid", user.id);
     btnShowPosts.addEventListener('click', infoShowPosts);
     infoUser.append(btnShowPosts);
-
-}
+  }
 
 
 
